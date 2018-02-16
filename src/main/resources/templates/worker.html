@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+    <title>Pracownicy</title>
+</head>
+<body>
+
+<h1>Lista pracowników</h1>
+
+<a th:href="@{'/edycja/' + ${worker.getId()}}">
+    <button type="button">Edytuj pracownika</button>
+</a>
+<br/>
+<br/>
+
+<a href="/">Wróć na stronę główną</a>
+
+<br/>
+<br/>
+
+        <p>Imię: <b><a th:text="${worker.getFirstName()}"></a></b></p>
+
+        <p>Nazwisko: <b><a th:text="${worker.getLastName()}"></a></b></p>
+
+        <p>PESEL: <b><a th:text="${worker.getPESEL()}"></a></b></p>
+
+        <p>Wynagrodzenie: <b><a th:text="${worker.getSalary()}"></a></b></p>
+
+        <p>Pracuje od: <b><a th:text="${worker.getWorkingSince()}"></a></b></p>
+
+
+</body>
+</html>

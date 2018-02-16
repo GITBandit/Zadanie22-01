@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+    <title>Pracownicy</title>
+</head>
+<body>
+
+<h1>Lista pracowników</h1>
+
+<a th:href="@{/dodaj}">
+    <button type="button">Dodaj pracownika</button>
+</a>
+<br/>
+<br/>
+
+<table>
+    <tr>
+        <th>Imię</th>
+        <th>Nazwisko</th>
+<!--        <th>PESEL</th>
+        <th>Wynagrodzenie</th>
+        <th>Pracuje od</th>-->
+    </tr>
+    <tr th:each="worker : ${workerList}">
+
+        <td>
+            <a th:href="@{'/info/' + ${worker.getId()}}" th:text="${worker.getFirstName()}"></a>
+        </td>
+        <td>
+            <a th:href="@{'/info/' + ${worker.getId()}}" th:text="${worker.getLastName()}"></a>
+        </td>
+<!--
+        <td>
+            <a th:href="@{'/info/' + ${worker.getId()}}" th:text="${worker.getPESEL()}"></a>
+        </td>
+        <td>
+            <a th:href="@{'/info/' + ${worker.getId()}}" th:text="${worker.getSalary()}"></a>
+        </td>
+        <td>
+            <a th:href="@{'/info/' + ${worker.getId()}}" th:text="${worker.getWorkingSince()}"></a>
+        </td>
+-->
+
+    </tr>
+</table>
+
+
+</body>
+</html>

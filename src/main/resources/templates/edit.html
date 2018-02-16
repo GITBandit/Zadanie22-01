@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+    <title>Dodaj pracownika</title>
+</head>
+<body>
+<h2>Podaj dane nowego pracownika</h2>
+
+<a href="/">Wróć na stronę główną</a>
+
+<br/>
+<br/>
+
+<form th:action="@{'/edycja/' + ${worker.getId()}}" method="post" th:object="${worker}">
+
+    Imię: <input type="text"  th:field="*{firstName}"/>
+    Nazwisko: <input type="text"  th:field="*{lastName}"/>
+    PESEL: <input type="text"  th:field="*{PESEL}"/>
+    Wynagrodzenie: <input type="text"  th:field="*{salary}"/>
+    Data zatrudnienia: <input type="date"  th:field="*{workingSince}"  />
+
+    <input type="submit" value="Zapisz"/>
+
+</form>
+
+</body>
+</html>
