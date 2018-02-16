@@ -28,10 +28,6 @@ public class AppController {
         Query query = entityManager.createQuery("SELECT e FROM Worker e");
         List<Worker> workerList = query.getResultList();
 
-        for (Worker worker : workerList) {
-            System.out.println(worker.getFirstName() + ", " + worker.getLastName());
-        }
-
         model.addAttribute("workerList",workerList);
 
         return "index";
@@ -50,8 +46,6 @@ public class AppController {
         entityManager.getTransaction().commit();
 
         model.addAttribute("worker",worker);
-
-        System.out.println(id);
 
         return "worker";
     }

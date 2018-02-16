@@ -3,22 +3,24 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
     <title>Pracownicy</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
+
 </head>
 <body>
 
-<h1>Lista pracowników</h1>
+<h1 style="margin-left: 1%; margin-top: 1%">Lista pracowników</h1>
 
 <a th:href="@{'/edycja/' + ${worker.getId()}}">
-    <button type="button">Edytuj pracownika</button>
+    <button class="btn btn-primary" style="margin-left: 1%; margin-top: 1%" type="button">Edytuj pracownika</button>
 </a>
 <br/>
 <br/>
 
-<a href="/">Wróć na stronę główną</a>
+<a style="margin-left: 1%" href="/">Wróć na stronę główną</a>
 
 <br/>
 <br/>
-
+<div style="margin-left: 2%">
         <p>Imię: <b><a th:text="${worker.getFirstName()}"></a></b></p>
 
         <p>Nazwisko: <b><a th:text="${worker.getLastName()}"></a></b></p>
@@ -28,7 +30,7 @@
         <p>Wynagrodzenie: <b><a th:text="${worker.getSalary()}"></a></b></p>
 
         <p>Pracuje od: <b><a th:text="${worker.getWorkingSince()}"></a></b></p>
-
+</div>
 
 </body>
 </html>

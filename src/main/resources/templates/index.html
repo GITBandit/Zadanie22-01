@@ -3,18 +3,20 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
     <title>Pracownicy</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
+
 </head>
 <body>
 
-<h1>Lista pracowników</h1>
+<h1 style="margin-left: 1%; margin-top: 1%">Lista pracowników</h1>
 
 <a th:href="@{/dodaj}">
-    <button type="button">Dodaj pracownika</button>
+    <button class="btn btn-primary" style="margin-left: 1%; margin-top: 1%" type="button">Dodaj pracownika</button>
 </a>
 <br/>
 <br/>
-
-<table>
+<div style="margin-left: 2%; margin-right: 80%">
+<table class="table">
     <tr>
         <th>Imię</th>
         <th>Nazwisko</th>
@@ -44,7 +46,7 @@
 
     </tr>
 </table>
-
+</div>
 
 </body>
 </html>

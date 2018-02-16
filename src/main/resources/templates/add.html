@@ -3,26 +3,57 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
     <title>Dodaj pracownika</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
 </head>
 <body>
-<h2>Podaj dane nowego pracownika</h2>
+<h2 style="margin-left: 1%; margin-top: 1%">Podaj dane nowego pracownika</h2>
 
-<a href="/">Wróć na stronę główną</a>
+<a style="margin-left: 1%; margin-top: 1%" href="/">Wróć na stronę główną</a>
 
 <br/>
 <br/>
-
+    <div style="margin-left: 2%; margin-right: 80%">
     <form th:action="@{/dodaj}" method="post" th:object="${worker}">
+       <div class="form-group">
+       <label>Imię: </label>
+           <div class="col-sm-10">
+                <input class="form-control" type="text" th:field="*{firstName}"/>
+           </div>
+       </div>
 
-       Imię: <input type="text" th:field="*{firstName}"/>
-       Nazwisko: <input type="text" th:field="*{lastName}"/>
-       PESEL: <input type="text" th:field="*{PESEL}"/>
-       Wynagrodzenie: <input type="text" th:field="*{salary}"/>
-       Data zatrudnienia: <input type="date" th:field="*{workingSince}"  />
+       <div class="form-group">
+       <label>Nazwisko: </label>
+           <div class="col-sm-10">
+                <input class="form-control" type="text" th:field="*{lastName}"/>
+           </div>
+       </div>
 
-        <input type="submit" value="Dodaj"/>
+       <div class="form-group">
+       <label>PESEL: </label>
+           <div class="col-sm-10">
+                <input class="form-control" type="text" th:field="*{PESEL}"/>
+           </div>
+       </div>
+
+       <div class="form-group">
+       <label>Wynagrodzenie: </label>
+            <div class="col-sm-10">
+                <input class="form-control" type="text" th:field="*{salary}"/>
+            </div>
+       </div>
+
+       <div class="form-group">
+       <label>Data zatrudnienia: </label>
+           <div class="col-sm-10">
+       <input class="form-control" type="date" th:field="*{workingSince}"  />
+           </div>
+       </div>
+
+       <input class="btn btn-primary" type="submit" value="Dodaj"/>
 
     </form>
+    </div>
+
 
 </body>
 </html>
