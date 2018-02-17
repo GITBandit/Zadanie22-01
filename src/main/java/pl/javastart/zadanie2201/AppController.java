@@ -50,7 +50,17 @@ public class AppController {
     @GetMapping("/dodaj")
     public String addWorker(Model model){
 
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+
         model.addAttribute("worker", new Worker());
+
+        entityManager.getTransaction().begin();
+
+        TypedQuery query = entityManager.createQuery("SELECT c FROM Company c", Company.class);
+
+        List<Company> resultList = query.getResultList();
+
+        model.addAttribute("companies", resultList);
 
         return "add";
     }
@@ -61,6 +71,23 @@ public class AppController {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();
 
+
+        TypedQuery queryCompany = entityManager.createQuery("SELECT c FROM Company c", Company.class);
+        List<Company> resultList = queryCompany.getResultList();
+
+        entityManager.getTransaction().commit();
+
+        Company companyToUpdate = null;
+
+        for (Company company : resultList) {
+            if(company.getId() == worker.getCompanyAsLong()){
+                companyToUpdate = company;
+            }
+        }
+        worker.setCompany(companyToUpdate);
+
+        entityManager.getTransaction().begin();
+
         try {
             entityManager.persist(worker);
 
@@ -69,8 +96,10 @@ public class AppController {
             return "error";
         }
 
+        entityManager.getTransaction().begin();
         Query query = entityManager.createQuery("SELECT e FROM Worker e");
         List<Worker> workerList = query.getResultList();
+        entityManager.getTransaction().commit();
 
 
         model.addAttribute("workerList",workerList);
