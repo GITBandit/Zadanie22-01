@@ -38,6 +38,9 @@
         <td>
             <a th:href="@{'/info/' + ${worker.getId()}}" th:text="${worker.getWorkingSince()}"></a>
         </td>
+        <td>
+            <a th:href="@{'/info/' + ${worker.getId()}}" th:text="${worker.getCompany().getName()}"></a>
+        </td>
 
     </tr>
 </table>

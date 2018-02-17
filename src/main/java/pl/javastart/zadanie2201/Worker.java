@@ -1,12 +1,10 @@
 package pl.javastart.zadanie2201;
 
+import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.hibernate.annotations.Generated;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
@@ -27,6 +25,10 @@ public class Worker {
     private double salary;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate workingSince;
+    @ManyToOne
+    private Company company;
+    @Transient
+    private long companyAsLong;
 
     public Worker (){
 
@@ -79,5 +81,21 @@ public class Worker {
 
     public void setWorkingSince(LocalDate workingSince) {
         this.workingSince = workingSince;
+    }
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
+    }
+
+    public long getCompanyAsLong() {
+        return companyAsLong;
+    }
+
+    public void setCompanyAsLong(long companyAsLong) {
+        this.companyAsLong = companyAsLong;
     }
 }

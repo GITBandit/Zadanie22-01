@@ -6,10 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.PersistenceUnit;
-import javax.persistence.Query;
+import javax.persistence.*;
 import java.util.List;
 
 @Controller
@@ -94,6 +91,14 @@ public class AppController {
 
         model.addAttribute("worker",worker);
 
+        entityManager.getTransaction().begin();
+
+        TypedQuery query = entityManager.createQuery("SELECT c FROM Company c", Company.class);
+
+        List<Company> resultList = query.getResultList();
+
+        model.addAttribute("companies", resultList);
+
 
         return "edit";
     }
@@ -103,6 +108,22 @@ public class AppController {
                                 @PathVariable("id") long id){
 
         EntityManager entityManager = entityManagerFactory.createEntityManager();
+
+        entityManager.getTransaction().begin();
+
+        TypedQuery queryCompany = entityManager.createQuery("SELECT c FROM Company c", Company.class);
+        List<Company> resultList = queryCompany.getResultList();
+
+        entityManager.getTransaction().commit();
+
+        Company companyToUpdate = null;
+
+        for (Company company : resultList) {
+            if(company.getId() == worker.getCompanyAsLong()){
+                companyToUpdate = company;
+            }
+        }
+
         entityManager.getTransaction().begin();
 
         try {
@@ -113,17 +134,24 @@ public class AppController {
             workerToUpdate.setSalary(worker.getSalary());
             workerToUpdate.setWorkingSince(worker.getWorkingSince());
             workerToUpdate.setPESEL(worker.getPESEL());
+            workerToUpdate.setCompany(companyToUpdate);
+
 
             entityManager.getTransaction().commit();
+
         } catch (NumberFormatException e){
             return "error";
         }
 
-        Query query = entityManager.createQuery("SELECT e FROM Worker e");
-        List<Worker> workerList = query.getResultList();
+        entityManager.getTransaction().begin();
 
+        Query queryWorker = entityManager.createQuery("SELECT e FROM Worker e");
+        List<Worker> workerList = queryWorker.getResultList();
+
+        entityManager.getTransaction().commit();
 
         model.addAttribute("workerList",workerList);
+
 
         return "lista";
     }

@@ -30,6 +30,8 @@
         <p>Wynagrodzenie: <b><a th:text="${worker.getSalary()}"></a></b></p>
 
         <p>Pracuje od: <b><a th:text="${worker.getWorkingSince()}"></a></b></p>
+
+        <p>Firma: <b><a th:text="${worker.getCompany().getName()}"></a></b></p>
 </div>
 
 </body>
